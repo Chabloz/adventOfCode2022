@@ -15,8 +15,9 @@ function getSumOfCaloriesByElves(elvesCalories) {
 }
 
 function findIndexOfMaxValueLessThan(array, lessThan = Infinity) {
-  let maxValue = -Infinity;
-  let maxIndex = -1;
+  if (array.length == 0) return -1;
+  let maxValue = array[0];
+  let maxIndex = 0;
   for (const [index, value] of array.entries()) {
     if (value <= maxValue || value >= lessThan) continue;
     maxValue = value;
