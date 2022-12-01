@@ -29,7 +29,7 @@ const elvesCalories = getElvesCalories(input);
 const elvesTotalCalories = getSumOfCaloriesByElves(elvesCalories);
 const indexOfTheElfWithMaxCal = findIndexOfMaxValue(elvesTotalCalories);
 
-// part
+// part 1
 console.log(elvesTotalCalories[indexOfTheElfWithMaxCal]);
 
 // part 2
