@@ -14,7 +14,7 @@ function getSumOfCaloriesByElves(elvesCalories) {
   return elvesCalories.map(calories => calories.reduce((c1, c2) => c1 + c2));
 }
 
-function findIndexOfMaxValue(array, lessThan = Infinity) {
+function findIndexOfMaxValueLessThan(array, lessThan = Infinity) {
   let maxValue = -Infinity;
   let maxIndex = -1;
   for (const [index, value] of array.entries()) {
@@ -27,7 +27,7 @@ function findIndexOfMaxValue(array, lessThan = Infinity) {
 
 const elvesCalories = getElvesCalories(input);
 const elvesTotalCalories = getSumOfCaloriesByElves(elvesCalories);
-const indexOfTheElfWithMaxCal = findIndexOfMaxValue(elvesTotalCalories);
+const indexOfTheElfWithMaxCal = findIndexOfMaxValueLessThan(elvesTotalCalories);
 
 // part 1
 console.log(elvesTotalCalories[indexOfTheElfWithMaxCal]);
@@ -37,7 +37,7 @@ const nbElvesWithMaxCalories = 3;
 let lessThan = Infinity;
 let sum = 0;
 for (let i = 0; i < nbElvesWithMaxCalories; i++) {
-  const indexOfTheElfWithMaxCal = findIndexOfMaxValue(elvesTotalCalories, lessThan);
+  const indexOfTheElfWithMaxCal = findIndexOfMaxValueLessThan(elvesTotalCalories, lessThan);
   const calories = elvesTotalCalories[indexOfTheElfWithMaxCal];
   sum += calories;
   lessThan = calories;
