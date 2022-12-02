@@ -70,7 +70,7 @@ function getScoresOfPlayer2(rounds) {
     } else {
       scoreOutcome = outcomeToPoints[lose];
     }
-    let scoreChoice = choiceToPoints[choice2];
+    const scoreChoice = choiceToPoints[choice2];
     scores.push(scoreOutcome + scoreChoice);
   }
   return scores;
