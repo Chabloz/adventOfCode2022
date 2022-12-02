@@ -91,11 +91,10 @@ function outcomePlayer2ToChoice(rounds) {
   const roundsChoice = [];
   for (const round of rounds) {
     const choice1 = round[player1];
-    const outcome = round[player2];
-    const player1WinAgainst = choiceWinAgainst[choice1];
+    const outcome = round[player2];    
     let choice2;
     if (outcome == lose) {
-      choice2 = player1WinAgainst;
+      choice2 = choiceWinAgainst[choice1];
     } else if (outcome == draw) {
       choice2 = choice1;
     } else {
