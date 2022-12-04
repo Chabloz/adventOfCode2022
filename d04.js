@@ -33,22 +33,13 @@ for (let i = 0; i < ranges.length; i += 2) {
 console.log(countFullyContain);
 
 //part 2
-// this one is a bad try (but it works)
-function isRangeOverlap(range1, range2) {
-  return isFullyContained(range1, range2)
-    || range1.min >= range2.min && range1.min <= range2.max
-    || range1.max >= range2.min && range1.max <= range2.max;
-}
-
-// An improved version
-function  isRangeOverlapv2(range1, range2) {
+function  isRangeOverlap(range1, range2) {
   return range1.max >= range2.min && range1.min <= range2.max;
 }
 
-
 let countOverlap = 0;
 for (let i = 0; i < ranges.length; i += 2) {
-  if (isRangeOverlapv2(ranges[i], ranges[i+1])) {
+  if (isRangeOverlap(ranges[i], ranges[i+1])) {
     countOverlap++;
   }
 }
