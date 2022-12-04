@@ -34,7 +34,7 @@ console.log(countFullyContain);
 
 //part 2
 function  isRangeOverlap(range1, range2) {
-  return range1.max >= range2.min && range1.min <= range2.max;
+  return range1.min <= range2.max && range1.max >= range2.min;
 }
 
 let countOverlap = 0;
