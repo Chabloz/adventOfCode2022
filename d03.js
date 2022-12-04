@@ -11,7 +11,7 @@ function getCompartments(rucksacks) {
   return compartments;
 }
 
-// return null if no duplicates found
+// return null if no duplicate found
 function findFirstDuplicate(str1, str2) {
   const inStr1 = new Set(str1);
   for (const item of str2) {
@@ -44,7 +44,7 @@ console.log(priorities.reduce((p1, p2) => p1 + p2));
 
 // part 2
 // Same as part 1 but more versatile (works for any number of strings)
-// return null if no duplicates found
+// return null if no duplicate found
 function findFirstDuplicateStr(str, ...otherStr) {
   if (otherStr.length == 0) return null;
   const itemsSets = otherStr.map(str => new Set(str));
