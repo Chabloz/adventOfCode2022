@@ -21,7 +21,7 @@ function parseInputStacks(cratesInput) {
   return stacks;
 }
 
-function parseMoves(movesInput) {
+function parseInputMoves(movesInput) {
   const moves = [];
   for (const move of movesInput.split('\n')) {
     let [number, from, to] = move.match(/\d+/g);
@@ -50,7 +50,7 @@ function getAllTopCrates(stacks) {
 
 // part 1
 let stacks = parseInputStacks(cratesInput);
-const moves = parseMoves(movesInput);
+const moves = parseInputMoves(movesInput);
 applyMoves(stacks, moves);
 console.log(getAllTopCrates(stacks));
 
