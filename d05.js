@@ -33,7 +33,7 @@ function parseInputMoves(movesInput) {
 
 function applyMoves(stacks, moves, isPart1 = true) {
   for (const move of moves) {
-    let {number, from, to} = move;
+    const {number, from, to} = move;
     const crates = stacks[from].splice(-number);
     if (isPart1) crates.reverse();
     stacks[to].push(...crates);
