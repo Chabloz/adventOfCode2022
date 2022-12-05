@@ -24,7 +24,7 @@ function parseInputStacks(cratesInput) {
 function parseInputMoves(movesInput) {
   const moves = [];
   for (const move of movesInput.split('\n')) {
-    let [number, from, to] = move.match(/\d+/g);
+    const [number, from, to] = move.match(/\d+/g);
     // Do -1 to convert "human" index to array index
     moves.push({number: parseInt(number), from: from - 1, to: to - 1});
   }
