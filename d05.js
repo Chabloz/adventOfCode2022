@@ -10,7 +10,7 @@ function parseInputStacks(cratesInput) {
     // Ignore the line with the stack index (we dont need it)
     if (line[1] == '1') continue;
     let stackIndex = 0;
-    // The input data for a stack is always 4 chars except the last one (3 only)
+    // The input data for a stack is always 4 chars except the last one on the line (3 only)
     for (const stackInput of line.match(/.{3,4}/g)) {
       const letter = stackInput[1];
       // If the stack has a create
