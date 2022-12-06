@@ -10,7 +10,7 @@ function isStrContainsAllDiffChars(str) {
 function findIndexStrContainsNbOfDiffCharsInSequence(str, nbChars) {
   if (str.length < nbChars) return -1;
   let buffer = str.slice(0, nbChars);
-  if (isStrContainsAllDiffChars(buffer)) return nbChars;
+  if (isStrContainsAllDiffChars(buffer)) return nbChars - 1;
   for (let i = nbChars; i < str.length; i++) {
     buffer = buffer.slice(1) + str[i];
     if (isStrContainsAllDiffChars(buffer)) return i;
