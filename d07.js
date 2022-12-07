@@ -40,7 +40,7 @@ class Directory {
 
   flatten() {
     let folders = new Set([this]);
-    // The use of recusion not really needed
+    // The use of recusion is not really needed
     // but I'll do an iterative version in another puzzle of the advent
     for (const sub of this.subdir.values()) {
       folders = new Set([...folders, ...sub.flatten()]);
