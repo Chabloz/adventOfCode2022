@@ -91,7 +91,6 @@ for (const line of input.split('\n')) {
   }
 }
 
-
 // part 1
 const threshold = 100_000;
 let sum = 0;
