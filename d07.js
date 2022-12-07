@@ -47,14 +47,14 @@ class Directory {
     return folders;
   }
 
-  log(deep = 0 ) {
+  log(deep = 0) {
     const spacer = '  '.repeat(deep);
-    console.log(spacer + '>' + this.name);
+    console.log(`${spacer}>${this.name}`);
     for (const sub of this.subdir.values()) {
       sub.log(deep + 1);
     }
     for (const file of this.files.values()) {
-      console.log(spacer + ' ' + file.name + `(${file.size})`);
+      console.log(`${spacer} ${file.name} (${file.size})`);
     }
   }
 
