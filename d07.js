@@ -10,7 +10,7 @@ class Directory {
   }
 
   addSubdir(name) {
-    const dir = new Directory(name, this)
+    const dir = new Directory(name, this);
     this.subdir.set(name, dir);
     return dir;
   }
@@ -39,8 +39,9 @@ class Directory {
   }
 
   flatten() {
-    let folders = new Set();
-    folders.add(this);
+    let folders = new Set([this]);
+    // The use of recusion not really needed
+    // but I'll do an iterative version in another puzzle of the advent
     for (const sub of this.subdir.values()) {
       folders = new Set([...folders, ...sub.flatten()]);
     }
@@ -87,7 +88,7 @@ for (const line of input.split('\n')) {
   if (line[0] == '$') {
     manageCmd(line.slice(2));
   } else {
-    manageFilesAndFolders(line)
+    manageFilesAndFolders(line);
   }
 }
 
