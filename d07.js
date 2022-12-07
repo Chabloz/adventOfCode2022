@@ -50,7 +50,7 @@ class Directory {
 
   // Not needed, but this was for an explanation of the depth of a node in a tree.
   log(depth = 0) {
-    const spacer = '  '.repeat(deep);
+    const spacer = '  '.repeat(depth);
     console.log(`${spacer}>${this.name}`);
     for (const sub of this.subdir.values()) {
       sub.log(depth + 1);
