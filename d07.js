@@ -48,11 +48,12 @@ class Directory {
     return folders;
   }
 
-  log(deep = 0) {
+  // Not needed, but this was for an explanation of the depth of a node in a tree.
+  log(depth = 0) {
     const spacer = '  '.repeat(deep);
     console.log(`${spacer}>${this.name}`);
     for (const sub of this.subdir.values()) {
-      sub.log(deep + 1);
+      sub.log(depth + 1);
     }
     for (const file of this.files.values()) {
       console.log(`${spacer} ${file.name} (${file.size})`);
