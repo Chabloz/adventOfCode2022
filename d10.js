@@ -14,11 +14,13 @@ class Cpu {
   }
 
   execute(cmd, arg) {
-    if (cmd == 'addx') {
-      this.addx(arg);
-    } else if (cmd == 'noop') {
-      this.noop();
-    }
+    this[cmd](arg);
+    // or with more check:
+    // if (cmd == 'addx') {
+    //   this.addx(arg);
+    // } else if (cmd == 'noop') {
+    //   this.noop();
+    // }
   }
 
   addx(value) {
@@ -31,7 +33,7 @@ class Cpu {
     this.tick();
   }
 
-  getRegxAt(clock) {
+  getRegXAt(clock) {
     return this.history.get(clock);
   }
 
@@ -54,7 +56,7 @@ for (const cmd of instructions) {
 
 let sum = 0;
 for (let clock = 20; clock <= 220; clock += 40) {
-  sum += cpu.getRegxAt(clock) * clock;
+  sum += cpu.getRegXAt(clock) * clock;
 }
 console.log(sum);
 
@@ -63,7 +65,7 @@ for (let row = 0; row < 6; row++) {
   let lineBuffer = '';
   for (let col = 0; col < 40; col++) {
     const clock = col + 1 + row * 40;
-    lineBuffer += Math.abs(cpu.getRegxAt(clock) - col) < 2 ? '#' : ' ';
+    lineBuffer += Math.abs(cpu.getRegXAt(clock) - col) < 2 ? '#' : ' ';
   }
   console.log(lineBuffer);
 }
