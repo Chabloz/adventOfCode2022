@@ -33,8 +33,7 @@ function doMonkeyOperation(operation, item) {
 }
 
 function doMonkeyTurn(monkey, isPart1 = true) {
-  let item;
-  while (item = monkey.items.shift()) {
+  for (let item of monkey.items) {
     monkey.inspections++;
     item = doMonkeyOperation(monkey.operation, item);
     // Relief that the monkey's inspection didn't damage the item
@@ -47,6 +46,7 @@ function doMonkeyTurn(monkey, isPart1 = true) {
     const targetMonkey = item % monkey.multipleOf == 0 ? monkey.success : monkey.failure;
     monkeys[targetMonkey].items.push(item);
   }
+  monkey.items = [];
 }
 
 
