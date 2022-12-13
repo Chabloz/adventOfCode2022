@@ -14,7 +14,7 @@ function comparePairs(left, right) {
   const isArrayRight = Array.isArray(right);
   // Integer compare
   if (!isArrayLeft && !isArrayRight) return left - right;
-  // Array compare (recursiv)
+  // Array compare (recursive)
   if (isArrayLeft && isArrayRight) {
     for (const [index, leftVal] of left.entries()) {
       // If the right list runs out of items first, the inputs are not in the right order.
