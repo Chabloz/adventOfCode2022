@@ -8,7 +8,7 @@ function parseInput(input) {
   return pairs;
 }
 
-// Return 1 if pairs is invalid, 0 if we must continue, -1 if valid
+// Return >0 if pairs is invalid, 0 if we must continue, <0 if valid
 function comparePairs(left, right) {
   const isArrayLeft = Array.isArray(left);
   const isArrayRight = Array.isArray(right);
