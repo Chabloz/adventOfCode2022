@@ -9,7 +9,7 @@ function parseInput(input) {
 }
 
 // Return >0 if pairs is invalid, 0 if we must continue, <0 if valid
-function comparePairs(left, right) {
+function comparePair(left, right) {
   const isArrayLeft = Array.isArray(left);
   const isArrayRight = Array.isArray(right);
   // Integer compare
@@ -19,21 +19,21 @@ function comparePairs(left, right) {
     for (const [index, leftVal] of left.entries()) {
       // If the right list runs out of items first, the inputs are not in the right order.
       if (index >= right.length) return 1;
-      const compareRes = comparePairs(leftVal, right[index]);
+      const compareRes = comparePair(leftVal, right[index]);
       // stop only if we doesn't need to check next one
       if (compareRes != 0) return compareRes;
     }
     return left.length - right.length;
   }
   // Integer vs array comparaison management
-  return isArrayLeft ? comparePairs(left, [right]) : comparePairs([left], right);
+  return isArrayLeft ? comparePair(left, [right]) : comparePair([left], right);
 }
 
 // part 1
 const allPairs = parseInput(input);
 const indices = [];
 for (const [indice, pairs] of allPairs.entries()) {
-  if (comparePairs(pairs[0], pairs[1]) < 0) {
+  if (comparePair(pairs[0], pairs[1]) < 0) {
     indices.push(indice);
   }
 }
@@ -44,5 +44,5 @@ const dividerPacket1 = [[2]];
 const dividerPacket2 = [[6]];
 const signals = allPairs.flat(1);
 signals.push(dividerPacket1, dividerPacket2);
-signals.sort(comparePairs);
+signals.sort(comparePair);
 console.log((signals.indexOf(dividerPacket1) + 1) * (signals.indexOf(dividerPacket2) + 1));
