@@ -1,6 +1,4 @@
-let input = ``;
-
-input = `Valve TM has flow rate=3; tunnels lead to valves GU, KQ, BV, MK
+let input = `Valve TM has flow rate=3; tunnels lead to valves GU, KQ, BV, MK
 Valve BX has flow rate=0; tunnels lead to valves CD, HX
 Valve GV has flow rate=8; tunnels lead to valves MP, SE
 Valve OI has flow rate=0; tunnels lead to valves ZB, RG
