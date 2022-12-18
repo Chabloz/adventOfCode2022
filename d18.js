@@ -37,8 +37,9 @@ function getNeighborhoodVonNeumann({x , y, z}) {
   ].filter(coord => isValidPosition(coord));
 }
 
-function nbLavaNeighboors({x, y, z}) {
-  const lavaNeighborhood = getNeighborhoodVonNeumann({x, y, z}).filter(({x, y, z}) => mat3d[x][y][z] == lava);
+function nbLavaNeighbors({x, y, z}) {
+  const lavaNeighborhood = getNeighborhoodVonNeumann({x, y, z})
+   .filter(({x, y, z}) => mat3d[x][y][z] == lava);
   return lavaNeighborhood.length;
 }
 
@@ -48,19 +49,13 @@ function isValidPosition({x, y, z}) {
       && z >= 0 && z < mat3d[0][0].length
 }
 
-function isOnBorder({x, y, z}) {
-  return x === 0 || x === mat3d.length - 1
-      || y === 0 || y === mat3d[0].length - 1
-      || z === 0 || z === mat3d[0][0].length - 1
-}
-
 // part 1
 let sum = 0;
 for (let x = 0; x < mat3d.length; x++) {
   for (let y = 0; y < mat3d[0].length; y++) {
     for (let z = 0; z < mat3d[0][0].length; z++) {
       if (mat3d[x][y][z] == lava) {
-        sum += 6 - nbLavaNeighboors({x,y,z});
+        sum += 6 - nbLavaNeighbors({x,y,z});
       }
     }
   }
@@ -72,16 +67,23 @@ function h(coord) {
   return `${coord.x}:${coord.y}:${coord.z}`;
 }
 
+function isOnBorder({x, y, z}) {
+  return x === 0 || x === mat3d.length - 1
+      || y === 0 || y === mat3d[0].length - 1
+      || z === 0 || z === mat3d[0][0].length - 1
+}
+
+
 // Breadth First Search
 function getAllLavaSides(from, visited) {
   if (visited.has(h(from))) return 0;
   visited.add(h(from));
   if (isOnBorder(from)) return 0;
 
-  const nbLavaNeighboorsMap = new Map();
+  const nbLavaNeighborsMap = new Map();
   const frontier = [];
   frontier.push(from);
-  nbLavaNeighboorsMap.set(h(from), nbLavaNeighboors(from));
+  nbLavaNeighborsMap.set(h(from), nbLavaNeighbors(from));
 
   while (frontier.length > 0) {
     const cell = frontier.shift();
@@ -90,16 +92,16 @@ function getAllLavaSides(from, visited) {
       .filter(({x, y, z}) => mat3d[x][y][z] == air);
     for (const neighbor of neighbors) {
       // Ignore allready visited cells
-      if (nbLavaNeighboorsMap.has(h(neighbor))) continue;
+      if (nbLavaNeighborsMap.has(h(neighbor))) continue;
       visited.add(h(neighbor));
       // if the BFS reach the border, we do noot count those air cells
       if (isOnBorder(neighbor)) return 0;
       frontier.push(neighbor);
-      nbLavaNeighboorsMap.set(h(neighbor), nbLavaNeighboors(neighbor));
+      nbLavaNeighborsMap.set(h(neighbor), nbLavaNeighbors(neighbor));
     }
   }
 
-  return [...nbLavaNeighboorsMap.values()].reduce((acc, val) => acc + val, 0);
+  return [...nbLavaNeighborsMap.values()].reduce((acc, val) => acc + val, 0);
 }
 
 const visited = new Set();
