@@ -86,8 +86,8 @@ function getAllLavaSides(from, visited) {
   while (frontier.length > 0) {
     const cell = frontier.shift();
     // get only air neighbors
-    let neighbors = getNeighborhoodVonNeumann(cell);
-    neighbors = neighbors.filter(({x, y, z}) => mat3d[x][y][z] == air);
+    const neighbors = getNeighborhoodVonNeumann(cell)
+      .filter(({x, y, z}) => mat3d[x][y][z] == air);
     for (const neighbor of neighbors) {
       // Ignore allready visited cells
       if (nbLavaNeighboorsMap.has(h(neighbor))) continue;
