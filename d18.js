@@ -68,37 +68,37 @@ for (let x = 0; x < mat3d.length; x++) {
 console.log(sum);
 
 // Part 2
+function h(coord) {
+  return `${coord.x}:${coord.y}:${coord.z}`;
+}
+
 // Breadth First Search
-function getAllLavaSides({x, y, z}, visited) {
-  if (visited.has(`${x}:${y}:${z}`)) return 0;
-  visited.add(`${x}:${y}:${z}`);
-  if (isOnBorder({x, y, z})) return 0;
+function getAllLavaSides(from, visited) {
+  if (visited.has(h(from))) return 0;
+  visited.add(h(from));
+  if (isOnBorder(from)) return 0;
+
   const nbLavaNeighboorsMap = new Map();
-  // The flowMap is a map of coord to the coord of the next tile to go to
-  // The frontier will store the cells who needs to be visited
   const frontier = [];
-  // At the beginning, only the destination is in the frontier
-  frontier.push({x, y, z});
-  nbLavaNeighboorsMap.set(`${x}:${y}:${z}`, nbLavaNeighboors({x, y, z}));
-  // While the frontier is not empty, we must continue to visit the cells inside it
+  frontier.push(from);
+  nbLavaNeighboorsMap.set(h(from), nbLavaNeighboors(from));
+
   while (frontier.length > 0) {
-    // We get the first cell of the frontier
     const cell = frontier.shift();
-    // We get the neighbors of the cell
+    // get only air neighbors
     let neighbors = getNeighborhoodVonNeumann(cell);
     neighbors = neighbors.filter(({x, y, z}) => mat3d[x][y][z] == air);
-    // For each neighbor
     for (const neighbor of neighbors) {
       // Ignore allready visited cells
-      if (nbLavaNeighboorsMap.has(`${neighbor.x}:${neighbor.y}:${neighbor.z}`)) continue;
-      visited.add(`${neighbor.x}:${neighbor.y}:${neighbor.z}`);
+      if (nbLavaNeighboorsMap.has(h(neighbor))) continue;
+      visited.add(h(neighbor));
+      // if the BFS reach the border, we do noot count those air cells
       if (isOnBorder(neighbor)) return 0;
-      // Add the neighbor to the frontier
       frontier.push(neighbor);
-      // Add the neighbor to the flowMap with the current cell as the next cell to go to
-      nbLavaNeighboorsMap.set(`${neighbor.x}:${neighbor.y}:${neighbor.z}`, nbLavaNeighboors(neighbor));
+      nbLavaNeighboorsMap.set(h(neighbor), nbLavaNeighboors(neighbor));
     }
   }
+
   return [...nbLavaNeighboorsMap.values()].reduce((acc, val) => acc + val, 0);
 }
 
