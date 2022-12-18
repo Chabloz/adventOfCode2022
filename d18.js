@@ -67,9 +67,8 @@ for (let x = 0; x < mat3d.length; x++) {
 }
 console.log(sum);
 
-
-
-// Breadth First Search BFS
+// Part 2
+// Breadth First Search
 function getAllLavaSides({x, y, z}, visited) {
   if (visited.has(`${x}:${y}:${z}`)) return 0;
   visited.add(`${x}:${y}:${z}`);
@@ -103,7 +102,6 @@ function getAllLavaSides({x, y, z}, visited) {
   return [...nbLavaNeighboorsMap.values()].reduce((acc, val) => acc + val, 0);
 }
 
-// part 2
 const visited = new Set();
 for (let x = 0; x < mat3d.length; x++) {
   for (let y = 0; y < mat3d[0].length; y++) {
