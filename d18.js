@@ -2808,11 +2808,9 @@ for (let x = 0; x < mat3d.length; x++) {
 console.log(sum);
 
 
-// refacto ?
-const visited = new Set();
 
 // Breadth First Search BFS
-function flowFieldTo({x, y, z}) {
+function getAllLavaSides({x, y, z}, visited) {
   if (visited.has(`${x}:${y}:${z}`)) return 0;
   visited.add(`${x}:${y}:${z}`);
   if (isOnBorder({x, y, z})) return 0;
@@ -2845,13 +2843,13 @@ function flowFieldTo({x, y, z}) {
   return [...nbLavaNeighboorsMap.values()].reduce((acc, val) => acc + val, 0);
 }
 
-//part 2
+// part 2
+const visited = new Set();
 for (let x = 0; x < mat3d.length; x++) {
   for (let y = 0; y < mat3d[0].length; y++) {
     for (let z = 0; z < mat3d[0][0].length; z++) {
       if (mat3d[x][y][z] == air) {
-        const nbSizeOfTrappedAir = flowFieldTo({x, y, z});
-        sum -= nbSizeOfTrappedAir;
+        sum -= getAllLavaSides({x, y, z}, visited);
       }
     }
   }
