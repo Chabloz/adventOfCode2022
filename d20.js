@@ -18,6 +18,7 @@ for (const [id, n] of numbers.entries()) {
 function getNextPos(curr) {
   const next = moduloEuclidian(curr.pos + curr.moves, numbersData.length - 1);
   if (curr.value >= 0) return next;
+  // Handle negative number special case for the index 0
   return next === 0 ? numbersData.length - 1 : next;
 }
 
@@ -35,7 +36,7 @@ function mix() {
       const next = numbersData[j];
       if (i === j) {
         curr.pos = nextPos;
-      } else if (next.pos <= max && next.pos >= min) {
+      } else if (next.pos >= min && next.pos <= max) {
         next.pos += Math.sign(currPos - nextPos);
       }
     }
