@@ -232,29 +232,6 @@ function parseInput(input) {
   return {maze, actions, start, dir};
 }
 
-// function getFaces(maze) {
-//   const facesData = [];
-//   // subdivise the maze in 12 sub array
-//   const edgeSize = Math.ceil(maze.length / 3);
-//   for (let row = 0; row < 3; row++) {
-//     for (let col = 0; col < 4; col++) {
-//       const face = [];
-//       for (let i = 0; i < edgeSize; i++) {
-//         face.push(maze[row * edgeSize + i].slice(col * edgeSize, (col + 1) * edgeSize));
-//       }
-//       facesData.push(face);
-//     }
-//   }
-//   return {
-//     [north]: facesData[1],
-//     [east]: facesData[2],
-//     [south]: facesData[7],
-//     [west]: facesData[6],
-//     [top]: facesData[4],
-//     [bottom]: facesData[9],
-//   }
-// }
-
 function moduloEuclidian(op1, op2) {
   return ((op1 % op2) + op2) % op2;
 }
