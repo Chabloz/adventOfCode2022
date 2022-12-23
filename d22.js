@@ -317,6 +317,7 @@ class Maze2 extends Maze {
       case south: pos.row++; break;
       case north: pos.row--; break;
     }
+    // Here we test the 14 possible teleportation from one side to another (This a bit of a mess)
     // From North to Bottom
     if (pos.row < 0 && pos.col >= this.edgeSize &&  pos.col < this.edgeSize * 2) {
       dir = east;
@@ -361,7 +362,7 @@ class Maze2 extends Maze {
       dir = east;
       pos.row = this.edgeSize - 1 - (pos.row - this.edgeSize * 2);
       pos.col = this.edgeSize;
-    // From Sout to East (TO check)
+    // From Sout to East
     } else if (pos.col >= this.edgeSize * 2 && pos.row >= this.edgeSize * 2) {
       dir = west;
       pos.col = 3 * this.edgeSize -1;
