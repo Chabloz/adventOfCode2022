@@ -158,21 +158,6 @@ class BlizzardAutomaton {
     }
   }
 
-  printBlizzardsPositionsAt(t) {
-    const blizzardsPositions = this.getTimePositionsMap(t);
-    console.log(blizzardsPositions.get(t));
-    console.log('\n=== Blizzards Position at', t, "===\n");
-    const grid = Array.from({length: this.maxRow+1}, () => new Array(this.maxCol+1).fill(this.air))
-    for (let i = 0; i <= this.maxRow; i++) {
-        for (let j = 0; j <= this.maxCol; j++) {
-            if (blizzardsPositions.get(t).has(this.hash({row: i, col: j}))) {
-                grid[i][j] = '#';
-            }
-        }
-        console.log(grid[i].join(''))
-    }
-}
-
 }
 
 // part 1
