@@ -26,13 +26,6 @@ let input = `#.#################################################################
 #<><<^<.<^>^^^<v>.^v>>vv.vv<v..<^vv<>.^vv^.^<vv<>^vvv<v^>v.<v<v<.^>.<.v^>^>>>vv<>^>.>>^^^<<^v<^.vv>>v.v<v><<<^^^v^vvv..^>#
 ########################################################################################################################.#`;
 
-// input = `#.######
-// #>>.<^<#
-// #.<..<<#
-// #>v.><>#
-// #<^v^^>#
-// ######.#`;
-
 function parseInput(input) {
   // Get the grid without the walls enclosing it
   const grid = input.split('\n').map(row => [...row].filter(c => c != '#'));
@@ -41,7 +34,7 @@ function parseInput(input) {
   const start = {row: 0, col: 0};
   const destination = {row: grid.length - 1, col: grid[0].length - 1};
   // Amount of simulation steps needed to simulated all the blizzards possible positions
-  const maxSimulationTime = Math.max(grid.length, grid[0].length) * 20;
+  const maxSimulationTime = Math.max(grid.length, grid[0].length) * 10;
   return {grid, start, destination, maxSimulationTime};
 }
 
@@ -163,6 +156,10 @@ class BlizzardAutomaton {
 // part 1
 const {grid, start, destination, maxSimulationTime} = parseInput(input);
 let automaton = new BlizzardAutomaton(grid);
-let time = automaton.getTimeToReach(start, destination, maxSimulationTime) + 1;
-console.log(time);
+let time = automaton.getTimeToReach(start, destination, maxSimulationTime);
+console.log(time + 1);
 
+// part 2
+time = automaton.getTimeToReach(destination, start, maxSimulationTime, time);
+time = automaton.getTimeToReach(start, destination, maxSimulationTime, time);
+console.log(time + 1);
