@@ -152,10 +152,11 @@ class BlizzardAutomaton {
 // part 1
 const {grid, start, destination, maxSimulationTime} = parseInput(input);
 let automaton = new BlizzardAutomaton(grid);
-let time = automaton.getTimeToReach(start, destination, maxSimulationTime);
-console.log(time + 1);
+// + 1 because we need one more move to exit (the real exit is outside my grid in the wall part)
+let time = automaton.getTimeToReach(start, destination, maxSimulationTime) + 1;
+console.log(time);
 
 // part 2
-time = automaton.getTimeToReach(destination, start, maxSimulationTime, time + 1);
-time = automaton.getTimeToReach(start, destination, maxSimulationTime, time + 1);
-console.log(time + 1);
+time = automaton.getTimeToReach(destination, start, maxSimulationTime, time) + 1;
+time = automaton.getTimeToReach(start, destination, maxSimulationTime, time) + 1;
+console.log(time);
