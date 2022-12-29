@@ -34,7 +34,7 @@ function parseInput(input) {
   const start = {row: 0, col: 0};
   const destination = {row: grid.length - 1, col: grid[0].length - 1};
   // Amount of simulation steps needed to simulated all the blizzards possible positions
-  const maxSimulationTime = Math.max(grid.length, grid[0].length) * 10;
+  const maxSimulationTime = Math.max(grid.length, grid[0].length) * 20;
   return {grid, start, destination, maxSimulationTime};
 }
 
@@ -120,9 +120,7 @@ class BlizzardAutomaton {
   getTimeToReach(start, destination, maxSimulationTime, actualTime = 0) {
     const blizzardsPositions = this.getTimePositionsMap(maxSimulationTime);
 
-    // Wait for the entrance to be clear of blizzards
     let time = actualTime;
-    while (blizzardsPositions.get(time).has(this.hash(start))) time++;
 
     const visited = new Set();
     const frontier = [];
@@ -149,8 +147,9 @@ class BlizzardAutomaton {
         frontier.push({...neighbor, time: current.time + 1});
       }
     }
+    // retry (if the entrance was a blizzard or no possible path for this time)
+    return this.getTimeToReach(start, destination, maxSimulationTime, actualTime + 1);
   }
-
 }
 
 // part 1
@@ -160,6 +159,6 @@ let time = automaton.getTimeToReach(start, destination, maxSimulationTime);
 console.log(time + 1);
 
 // part 2
-time = automaton.getTimeToReach(destination, start, maxSimulationTime, time);
-time = automaton.getTimeToReach(start, destination, maxSimulationTime, time);
+time = automaton.getTimeToReach(destination, start, maxSimulationTime, time + 1);
+time = automaton.getTimeToReach(start, destination, maxSimulationTime, time + 1);
 console.log(time + 1);
