@@ -133,7 +133,7 @@ function getMaxGeodes(bp) {
     // If we dont have enough time to build the robot, we dont consider it
     if (time >= bp.currTime) {
       maxGeode = Math.max(maxGeode, bp.resources[geode]);
-      return;
+      continue;
     }
 
     const bpClone = clone(bp);
