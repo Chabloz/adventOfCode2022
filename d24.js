@@ -133,18 +133,17 @@ class BlizzardAutomaton {
       // If allready visited, skip
       const hash = this.hashWithTime(current);
       if (visited.has(hash)) continue;
-
       visited.add(hash);
 
       // Explore the neighborhood
       const neighbors = this.getVonNeumannNeighborhood(current);
-
       for (const neighbor of neighbors) {
         // Ignore it if a blizzard is present
         if (blizzardsPositions.get(current.time + 1).has(this.hash(neighbor))) continue;
         frontier.push({...neighbor, time: current.time + 1});
       }
     }
+
     // retry (if the entrance was a blizzard or no possible path for this time)
     return this.getTimeToReach(start, destination, maxSimulationTime, actualTime + 1);
   }
