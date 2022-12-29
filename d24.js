@@ -34,7 +34,7 @@ function parseInput(input) {
   const start = {row: 0, col: 0};
   const destination = {row: grid.length - 1, col: grid[0].length - 1};
   // Amount of simulation steps needed to simulated all the blizzards possible positions
-  const maxSimulationTime = Math.max(grid.length, grid[0].length) * 20;
+  const maxSimulationTime = Math.max(grid.length, grid[0].length) * 10;
   return {grid, start, destination, maxSimulationTime};
 }
 
