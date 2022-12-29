@@ -236,7 +236,6 @@ automaton.shrink();
 console.log(automaton.grid.flat(1).filter(cell => cell === automaton.air).length);
 
 // part 2
-const automaton2 = new ElvesAutomaton(grid);
-automaton2.expand(70);
+automaton.expand(70);
 while (automaton.makeRound());
 console.log(automaton.round);
