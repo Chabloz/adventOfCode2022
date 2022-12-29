@@ -119,9 +119,7 @@ class BlizzardAutomaton {
 
   getTimeToReach(start, destination, maxSimulationTime, actualTime = 0) {
     const blizzardsPositions = this.getTimePositionsMap(maxSimulationTime);
-
-    let time = actualTime;
-
+    const time = actualTime;
     const visited = new Set();
     const frontier = [];
     frontier.push({...start, time});
